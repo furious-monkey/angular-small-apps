@@ -1,0 +1,28 @@
+{
+  "name": "angular-small-apps",
+  "description": "A collection of small apps implemented with Angular.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": {
+    "name": "Armand Philippot",
+    "url": "https://www.armandphilippot.com"
+  },
+  "homepage": "https://github.com/ArmandPhilippot/angular-small-apps#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:ArmandPhilippot/angular-small-apps.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ArmandPhilippot/angular-small-apps/issues"
+  },
+  "private": true,
+  "scripts": {
+    "release": "standard-version -s"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^14.1.0",
+    "@commitlint/config-conventional": "^14.1.0",
+    "husky": "^7.0.4",
+    "standard-version": "^9.3.2"
+  }
+}
