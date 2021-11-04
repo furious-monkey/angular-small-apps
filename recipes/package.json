@@ -1,9 +1,10 @@
 {
   "name": "recipes",
-  "version": "0.0.0",
+  "description": "A recipes app implemented with Angular.",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --open",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
