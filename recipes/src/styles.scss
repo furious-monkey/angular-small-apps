@@ -1,6 +1,7 @@
 @use "modern-normalize";
 
 body {
+  background: #ededed;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
   line-height: 1.618;
@@ -12,6 +13,18 @@ app-root {
   min-height: 100vh;
 }
 
+.header,
+.main,
+.footer {
+  width: min(calc(100vw - 2rem), 80ch);
+  margin: 1rem auto;
+}
+
 .main {
   flex: 1;
+}
+
+.footer {
+  margin-top: 3rem;
+  text-align: center;
 }
