@@ -25,7 +25,7 @@
           <div class="meta__item" *ngIf="recipe.strTags">
             <dt class="meta__term">Tags:</dt>
             <dd class="meta__description">
-              {{ recipe.strTags }}
+              {{ recipe.strTags | formatComma }}
             </dd>
           </div>
         </dl>
