@@ -3,7 +3,6 @@ import { Recipes } from '../recipes';
 import { RecipesService } from '../recipes.service';
 
 @Component({
-  selector: 'main',
   templateUrl: './recipes-list.component.html',
   styleUrls: ['./recipes-list.component.scss']
 })

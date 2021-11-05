@@ -29,9 +29,14 @@
             </dd>
           </div>
         </dl>
-        <a href="#" class="read-more"
-          >Read more <span class="read-more__icon">&rightarrow;</span></a
+        <a
+          [routerLink]="['/recipe/', recipe.strMeal | slugify]"
+          [state]="{ id: recipe.idMeal }"
+          class="read-more"
         >
+          Read more
+          <span class="read-more__icon"> &rightarrow;</span>
+        </a>
       </footer>
     </article>
   </li>
