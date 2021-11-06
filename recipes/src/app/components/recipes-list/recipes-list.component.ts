@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Recipes } from '../recipes';
-import { RecipesService } from '../recipes.service';
+import { RecipesList } from './recipes-list';
+import { RecipesService } from './recipes-list.service';
 
 @Component({
   templateUrl: './recipes-list.component.html',
   styleUrls: ['./recipes-list.component.scss']
 })
 export class RecipesListComponent implements OnInit {
-  recipes: Recipes[] = [];
+  recipes: RecipesList[] = [];
 
   constructor(private recipesService: RecipesService) { }
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { Recipes } from './recipes';
+import { RecipesList } from './recipes-list';
 
 
 @Injectable({
@@ -16,7 +16,7 @@ export class RecipesService {
 
   constructor(private http: HttpClient) {}
 
-  getRecipes(): Observable<Recipes[]> {
-    return this.http.get<Recipes[]>(this.recipesUrl)
+  getRecipes(): Observable<RecipesList[]> {
+    return this.http.get<RecipesList[]>(this.recipesUrl)
   }
 }
