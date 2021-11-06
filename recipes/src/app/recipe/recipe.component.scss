@@ -1,0 +1,32 @@
+.recipe {
+  background: #fff;
+  border: 1px solid #d7d7d7;
+  border-radius: 5px;
+  box-shadow: 0 0 5px -3px #000000a5;
+  padding: clamp(2rem, 3vw, 3rem) clamp(1rem, 3vw, 2rem) clamp(2rem, 3vw, 4rem);
+
+  &__body {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    gap: clamp(1rem, 3vw, 2rem);
+    margin: 1rem 0;
+  }
+
+  &__thumb {
+    max-width: 300px;
+  }
+
+  &__instructions {
+    flex: 0 0 100%;
+    white-space: pre-line;
+  }
+
+  &__footer {
+    margin: 2rem 0 0;
+  }
+}
+
+.ingredients-list {
+  padding: 0 1rem;
+}

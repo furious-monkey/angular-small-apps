@@ -1,1 +1,39 @@
-<p>recipe works!</p>
+<article class="recipe">
+  <header class="recipe__header">
+    <h2 class="recipe__title">{{ recipe.strMeal }}</h2>
+    <dl class="meta">
+      <dt class="meta__term">Category:</dt>
+      <dd class="meta__description">{{ recipe.strCategory }}</dd>
+    </dl>
+  </header>
+  <div class="recipe__body">
+    <div class="recipe__preview">
+      <h3>Preview</h3>
+      <img
+        src="{{ recipe.strMealThumb }}"
+        alt="{{ recipe.strMeal }} preview"
+        class="recipe__thumb"
+      />
+    </div>
+    <div class="recipe__ingredients">
+      <h3>Ingredients</h3>
+      <ul class="ingredients-list">
+        <li
+          *ngFor="let ingredient of getIngredients()"
+          class="ingredients-list__item"
+        >
+          {{ ingredient }}
+        </li>
+      </ul>
+    </div>
+    <div class="recipe__instructions">
+      <h3>Instructions</h3>
+      {{ recipe.strInstructions }}
+    </div>
+  </div>
+  <footer class="recipe__footer">
+    <a routerLink="" class="btn">
+      <span class="btn__icon">&leftarrow; </span>Back to recipes
+    </a>
+  </footer>
+</article>

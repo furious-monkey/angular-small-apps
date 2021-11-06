@@ -7,7 +7,7 @@ import { Recipe } from './recipe';
   providedIn: 'root'
 })
 export class RecipeService {
-  private recipeUrl = 'www.themealdb.com/api/json/v1/1/lookup.php?i=';
+  private recipeUrl = 'https://www.themealdb.com/api/json/v1/1/lookup.php?i=';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -15,7 +15,7 @@ export class RecipeService {
 
   constructor(private http: HttpClient) {}
 
-  getRecipe(id: number): Observable<Recipe> {
-    return this.http.get<Recipe>(this.recipeUrl + id)
+  getRecipe(id: number): Observable<Recipe[]> {
+    return this.http.get<Recipe[]>(this.recipeUrl + id);
   }
 }
