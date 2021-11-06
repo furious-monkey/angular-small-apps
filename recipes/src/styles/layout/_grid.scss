@@ -1,0 +1,16 @@
+app-root {
+  display: flex;
+  flex-flow: column nowrap;
+  min-height: 100vh;
+}
+
+.header,
+.main,
+.footer {
+  width: min(calc(100vw - 2rem), 80ch);
+  margin: 1rem auto;
+}
+
+.main {
+  flex: 1;
+}

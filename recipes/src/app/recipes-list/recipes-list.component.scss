@@ -22,7 +22,7 @@
     transform: scale(1.015);
     box-shadow: 0 1px 5px -2px #000000a5;
 
-    .read-more__icon {
+    .btn__icon {
       transform: scale(1.8) translateY(-2px);
     }
   }
@@ -51,52 +51,5 @@
     max-height: 200px;
     width: 100%;
     object-fit: cover;
-  }
-}
-
-.meta {
-  &__term {
-    font-weight: 600;
-  }
-
-  &__description {
-    margin: 0;
-  }
-}
-
-.read-more {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 0.5rem;
-  border: 3px solid #195881;
-  border-radius: 5px;
-  color: #195881;
-  font-weight: 600;
-  text-decoration: none;
-
-  &:hover,
-  &:focus {
-    background: #195881;
-    color: #fff;
-  }
-
-  &__icon {
-    font-weight: 900;
-    transform: scale(1.2) translateY(-2px);
-    transition: all 0.3s ease-in-out 0s;
-  }
-
-  &:hover &,
-  &:focus & {
-    &__icon {
-      transform: scale(1.8) translateY(-2px);
-    }
-  }
-
-  &:active & {
-    &__icon {
-      transform: scale(1.2) translateY(-2px);
-    }
   }
 }

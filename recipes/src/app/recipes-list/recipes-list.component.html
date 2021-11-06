@@ -32,10 +32,10 @@
         <a
           [routerLink]="['/recipe/', recipe.strMeal | slugify]"
           [state]="{ id: recipe.idMeal }"
-          class="read-more"
+          class="btn"
         >
           Read more
-          <span class="read-more__icon"> &rightarrow;</span>
+          <span class="btn__icon"> &rightarrow;</span>
         </a>
       </footer>
     </article>
