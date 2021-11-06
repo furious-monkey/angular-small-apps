@@ -1,24 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { RecipesList } from './recipes-list';
-import { RecipesService } from './recipes-list.service';
+import { Recipes } from 'src/app/shared/recipes';
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
 @Component({
   templateUrl: './recipes-list.component.html',
   styleUrls: ['./recipes-list.component.scss']
 })
 export class RecipesListComponent implements OnInit {
-  recipes: RecipesList[] = [];
+  recipes: Recipes[] = [];
 
-  constructor(private recipesService: RecipesService) { }
+  constructor(private storage: LocalStorageService) { }
 
   ngOnInit(): void {
     this.getRecipes();
   }
 
   getRecipes(): void {
-    this.recipesService.getRecipes()
-    .subscribe((recipes: any) => {
-      this.recipes = recipes.meals;
-    });
+    this.recipes = this.storage.get('recipes');
   }
 }

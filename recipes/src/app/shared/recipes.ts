@@ -1,8 +1,4 @@
-export interface Recipe {
-  meals: Array<Meals>
-}
-
-export interface Meals {
+export interface Recipes {
   idMeal: number;
   strMeal: string;
   strCategory: string;
