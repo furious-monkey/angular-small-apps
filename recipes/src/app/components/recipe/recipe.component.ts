@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Recipes } from 'src/app/shared/recipes';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
@@ -9,16 +10,16 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
 export class RecipeComponent implements OnInit {
   recipe: Partial<Recipes> = {};
 
-  constructor(private storage: LocalStorageService) { }
+  constructor(private storage: LocalStorageService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    const recipeId = history.state.id || 0;
-    this.getRecipe(recipeId);
+    const slug = this.route.snapshot.paramMap.get("slug") || "";
+    this.getRecipe(slug);
   }
 
-  getRecipe(id: number): void {
+  getRecipe(slug: string): void {
     const allRecipes = this.storage.get('recipes');
-    const filteredRecipes = allRecipes.filter((meal: Recipes) => meal.idMeal === id);
+    const filteredRecipes = allRecipes.filter((meal: Recipes) => meal.slug === slug);
     this.recipe = filteredRecipes[0] ? filteredRecipes[0] : {};
   }
 

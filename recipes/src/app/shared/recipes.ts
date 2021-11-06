@@ -45,4 +45,5 @@ export interface Recipes {
   strMeasure18: string;
   strMeasure19: string;
   strMeasure20: string;
+  slug: string;
 }

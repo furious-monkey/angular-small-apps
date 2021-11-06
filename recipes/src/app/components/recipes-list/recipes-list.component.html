@@ -30,7 +30,7 @@
           </div>
         </dl>
         <a
-          [routerLink]="['/recipe/', recipe.strMeal | slugify]"
+          [routerLink]="['/recipe/', recipe.slug]"
           [state]="{ id: recipe.idMeal }"
           class="btn"
         >

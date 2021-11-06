@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Recipes } from './shared/recipes';
 import { LocalStorageService } from './shared/services/local-storage.service';
 import { RecipesService } from './shared/services/recipes.service';
+import { slugify } from './shared/utilities/slugify';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +22,11 @@ export class AppComponent implements OnInit {
 
   saveRecipes(): void {
     this.recipesService.getAllRecipes().subscribe((recipes: any) => {
-      this.localStorage.set('recipes', recipes.meals);
+      const recipesArray = recipes.meals;
+      const newRecipesArray = recipesArray.map((recipe: Recipes) => {
+        return {...recipe, slug: slugify(recipe.strMeal)}
+      })
+      this.localStorage.set('recipes', newRecipesArray);
     });
   }
 }

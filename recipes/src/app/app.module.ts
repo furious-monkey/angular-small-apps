@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { RecipesListComponent } from './components/recipes-list/recipes-list.component';
 import { FormatCommaPipe } from './shared/pipes/format-comma.pipe';
 import { RecipeComponent } from './components/recipe/recipe.component';
-import { SlugifyPipe } from './shared/pipes/slugify.pipe';
 
 @NgModule({
   declarations: [
@@ -15,7 +14,6 @@ import { SlugifyPipe } from './shared/pipes/slugify.pipe';
     RecipesListComponent,
     FormatCommaPipe,
     RecipeComponent,
-    SlugifyPipe,
   ],
   imports: [
     BrowserModule,
