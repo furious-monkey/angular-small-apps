@@ -1,7 +1,7 @@
 .recipes-list {
   list-style-type: none;
   padding: 0;
-  margin: 0;
+  margin: 0 0 2rem;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(0, 345px));
   gap: 1rem;

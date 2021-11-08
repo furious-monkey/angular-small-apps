@@ -9,6 +9,7 @@ import { FormatCommaPipe } from './shared/pipes/format-comma.pipe';
 import { RecipeComponent } from './components/recipe/recipe.component';
 import { SearchComponent } from './components/search/search.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormatCommaPipe,
     RecipeComponent,
     SearchComponent,
+    SearchResultsComponent,
   ],
   imports: [
     BrowserModule,
