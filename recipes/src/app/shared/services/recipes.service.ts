@@ -9,6 +9,7 @@ import { Recipes } from '../recipes';
 export class RecipesService {
   private allRecipesAPI = 'https://www.themealdb.com/api/json/v1/1/search.php?f=a';
   private recipeByIdAPI = 'https://www.themealdb.com/api/json/v1/1/lookup.php?i=';
+  private recipeByNameAPI = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -22,5 +23,9 @@ export class RecipesService {
 
   getRecipeById(id: number): Observable<Recipes[]> {
     return this.http.get<Recipes[]>(this.recipeByIdAPI + id);
+  }
+
+  getRecipeByName(name: string): Observable<Recipes[]> {
+    return this.http.get<Recipes[]>(this.recipeByNameAPI + name);
   }
 }
