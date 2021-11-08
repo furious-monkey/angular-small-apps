@@ -1,0 +1,47 @@
+.card {
+  background: #fff;
+  border: 1px solid #d7d7d7;
+  border-radius: 5px;
+  box-shadow: 0 0 5px -3px #000000a5;
+  display: flex;
+  flex-flow: column wrap;
+  height: 100%;
+  transition: all 0.3s ease-in-out 0s;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.015);
+    box-shadow: 0 1px 5px -2px #000000a5;
+
+    .btn__icon {
+      transform: scale(1.8) translateY(-2px);
+    }
+  }
+
+  &__title,
+  &__body,
+  &__footer {
+    padding: 0 clamp(1rem, 3vw, 2rem);
+  }
+
+  &__body {
+    margin: auto 0 2rem;
+  }
+
+  &__footer {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 2rem;
+    font-size: 0.9rem;
+  }
+
+  &__thumb {
+    max-height: 200px;
+    width: 100%;
+    margin-bottom: 1rem;
+    object-fit: cover;
+  }
+}

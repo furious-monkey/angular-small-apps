@@ -16,9 +16,11 @@
  */
 @use "styles/layout/grid";
 @use "styles/layout/footer";
+@use "styles/layout/main";
 
 /**
  * Components
  */
 @use "styles/components/buttons";
+@use "styles/components/card";
 @use "styles/components/meta";
