@@ -1,0 +1,15 @@
+.form {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 0 0 2rem;
+
+  &__label {
+    flex: 0 0 100%;
+    cursor: pointer;
+  }
+
+  &__input {
+    margin-right: 0.5rem;
+    padding: 0.5rem;
+  }
+}

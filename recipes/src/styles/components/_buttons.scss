@@ -3,11 +3,13 @@
   align-items: center;
   gap: 5px;
   padding: 0.5rem;
+  background: #fff;
   border: 3px solid #195881;
   border-radius: 5px;
   color: #195881;
   font-weight: 600;
   text-decoration: none;
+  cursor: pointer;
 
   &:hover,
   &:focus {

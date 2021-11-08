@@ -1,0 +1,11 @@
+<form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="form">
+  <label for="search-form" class="form__label">Search for a recipe:</label>
+  <input
+    type="search"
+    name="search-form"
+    id="search-form"
+    formControlName="query"
+    class="form__input"
+  />
+  <button class="btn" type="submit">Search</button>
+</form>
