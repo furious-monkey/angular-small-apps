@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Recipes } from 'src/app/shared/recipes';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { RecipesService } from 'src/app/shared/services/recipes.service';
@@ -11,22 +11,26 @@ import { RecipesService } from 'src/app/shared/services/recipes.service';
 export class RecipeComponent implements OnInit {
   recipe: Partial<Recipes> = {};
 
-  constructor(private storage: LocalStorageService, private route: ActivatedRoute, private recipes: RecipesService) { }
+  constructor(private storage: LocalStorageService, private route: ActivatedRoute, private recipes: RecipesService, private router: Router) { }
 
   ngOnInit(): void {
     const slug = this.route.snapshot.paramMap.get("slug") || "";
-    this.getRecipe(slug);
+    this.setRecipe(slug);
   }
 
-  getRecipe(slug: string): void {
+  setRecipe(slug: string): void {
     const allRecipes = this.storage.get('recipes');
     const filteredRecipes = allRecipes.filter((meal: Recipes) => meal.slug === slug);
 
     if (filteredRecipes.length === 0) {
       const recipeId = history.state?.id;
-      if (recipeId) this.recipes.getRecipeById(recipeId).subscribe((recipes: any) => {
-        this.recipe = recipes.meals[0]
-      });
+      if (recipeId) {
+        this.recipes.getRecipeById(recipeId).subscribe((recipes: any) => {
+          this.recipe = recipes.meals[0]
+        });
+      } else {
+        this.router.navigateByUrl("/404");
+      }
     } else {
       this.recipe = filteredRecipes[0] ? filteredRecipes[0] : {};
     }

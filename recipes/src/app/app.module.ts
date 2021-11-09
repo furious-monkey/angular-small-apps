@@ -11,6 +11,7 @@ import { SearchComponent } from './components/search/search.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { SlugifyPipe } from './shared/pipes/slugify.pipe';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { SlugifyPipe } from './shared/pipes/slugify.pipe';
     SearchComponent,
     SearchResultsComponent,
     SlugifyPipe,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
