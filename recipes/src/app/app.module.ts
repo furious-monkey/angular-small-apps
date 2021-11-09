@@ -10,6 +10,7 @@ import { RecipeComponent } from './components/recipe/recipe.component';
 import { SearchComponent } from './components/search/search.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { SlugifyPipe } from './shared/pipes/slugify.pipe';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SearchResultsComponent } from './components/search-results/search-resul
     RecipeComponent,
     SearchComponent,
     SearchResultsComponent,
+    SlugifyPipe,
   ],
   imports: [
     BrowserModule,
