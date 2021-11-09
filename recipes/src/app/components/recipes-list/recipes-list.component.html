@@ -29,11 +29,7 @@
             </dd>
           </div>
         </dl>
-        <a
-          [routerLink]="['/recipe/', recipe.slug]"
-          [state]="{ id: recipe.idMeal }"
-          class="btn"
-        >
+        <a [routerLink]="['/recipe/', recipe.slug]" class="btn">
           Read more
           <span class="btn__icon"> &rightarrow;</span>
         </a>

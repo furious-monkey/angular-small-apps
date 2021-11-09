@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Recipes } from 'src/app/shared/recipes';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
@@ -6,7 +6,8 @@ import { RecipesService } from 'src/app/shared/services/recipes.service';
 
 @Component({
   templateUrl: './recipe.component.html',
-  styleUrls: ['./recipe.component.scss']
+  styleUrls: ['./recipe.component.scss'],
+  encapsulation: ViewEncapsulation.Emulated,
 })
 export class RecipeComponent implements OnInit {
   recipe: Partial<Recipes> = {};
