@@ -12,6 +12,8 @@ import { slugify } from 'src/app/shared/utilities/slugify';
 export class ToolbarComponent {
   recipeId = history.state?.id;
   savedRecipes: object[] = this.storage.get('recipes');
+  isEditionEnabled: boolean = false;
+  toggleLabel: string = 'Edition disabled';
 
   constructor(
     private storage: LocalStorageService,
@@ -40,7 +42,7 @@ export class ToolbarComponent {
     return !this.isSavedRecipe();
   }
 
-  saveRecipe() {
+  saveRecipe(): void {
     this.recipes.getRecipeById(this.recipeId).subscribe((recipe: any) => {
       const currentRecipe = recipe.meals[0];
       const newRecipe = {
@@ -50,5 +52,12 @@ export class ToolbarComponent {
       this.savedRecipes.push(newRecipe);
       this.storage.set('recipes', this.savedRecipes);
     });
+  }
+
+  toggleEdition() {
+    this.isEditionEnabled = !this.isEditionEnabled;
+    this.toggleLabel = this.isEditionEnabled
+      ? 'Edition enabled'
+      : 'Edition disabled';
   }
 }
