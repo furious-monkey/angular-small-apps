@@ -12,14 +12,6 @@ import { RecipesService } from 'src/app/shared/services/recipes.service';
 export class RecipeComponent implements OnInit {
   recipe: Partial<Recipes> = {};
   isEditable: boolean = false;
-  @Input()
-  get title(): string {
-    return this._title!;
-  }
-  set title(value: string) {
-    this._title = value && value.trim();
-  }
-  private _title = this.recipe.strMeal;
 
   constructor(
     private storage: LocalStorageService,
@@ -31,7 +23,6 @@ export class RecipeComponent implements OnInit {
   ngOnInit(): void {
     const slug = this.route.snapshot.paramMap.get('slug') || '';
     this.setRecipe(slug);
-    this.title = this.recipe.strMeal!;
   }
 
   setRecipe(slug: string): void {
@@ -76,10 +67,18 @@ export class RecipeComponent implements OnInit {
   updateRecipe(e: any) {
     let recipeProperty;
 
-    if (e.target.name === 'recipe-title') {
-      recipeProperty = 'strMeal' as keyof Recipes;
-    } else if (e.target.name === 'recipe-instructions') {
-      recipeProperty = 'strInstructions' as keyof Recipes;
+    switch (e.target.name) {
+      case 'recipe-title':
+        recipeProperty = 'strMeal' as keyof Recipes;
+        break;
+      case 'recipe-instructions':
+        recipeProperty = 'strInstructions' as keyof Recipes;
+        break;
+      case 'recipe-category':
+        recipeProperty = 'strCategory' as keyof Recipes;
+        break;
+      default:
+        break;
     }
 
     if (recipeProperty) {

@@ -8,7 +8,7 @@
       <ng-template #editableTitle>
         <input
           type="text"
-          value="{{ title }}"
+          value="{{ recipe.strMeal }}"
           name="recipe-title"
           (input)="updateRecipe($event)"
           class="recipe__field"
@@ -18,7 +18,23 @@
     </h2>
     <dl class="meta">
       <dt class="meta__term">Category:</dt>
-      <dd class="meta__description">{{ recipe.strCategory }}</dd>
+      <dd class="meta__description">
+        <ng-container
+          *ngIf="isEditable; then editableCategory; else staticCategory"
+        ></ng-container>
+        <ng-template #staticCategory>
+          {{ recipe.strCategory }}
+        </ng-template>
+        <ng-template #editableCategory>
+          <input
+            type="text"
+            name="recipe-category"
+            value="{{ recipe.strCategory }}"
+            (input)="updateRecipe($event)"
+            class="recipe__field"
+          />
+        </ng-template>
+      </dd>
     </dl>
   </header>
   <div class="recipe__body">
