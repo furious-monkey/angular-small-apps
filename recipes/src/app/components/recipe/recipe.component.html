@@ -41,10 +41,23 @@
     <div class="recipe__preview">
       <h3>Preview</h3>
       <img
-        src="{{ recipe.strMealThumb }}"
+        [src]="getPreview()"
         alt="{{ recipe.strMeal }} preview"
         class="recipe__thumb"
       />
+      <ng-container *ngIf="isEditable">
+        <label class="recipe__label btn" for="recipe-thumb">
+          Upload a new image
+          <input
+            type="file"
+            name="recipe-thumb"
+            id="recipe-thumb"
+            accept="image/png, image/jpeg"
+            class="recipe__field recipe__field--file"
+            (change)="updatePreview($event)"
+          />
+        </label>
+      </ng-container>
     </div>
     <div class="recipe__ingredients">
       <h3>Ingredients</h3>

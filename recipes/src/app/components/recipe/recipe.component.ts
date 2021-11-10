@@ -12,6 +12,8 @@ import { RecipesService } from 'src/app/shared/services/recipes.service';
 export class RecipeComponent implements OnInit {
   recipe: Partial<Recipes> = {};
   isEditable: boolean = false;
+  savedRecipes: Recipes[] = this.storage.get('recipes');
+  preview: string = this.recipe.strMealThumb!;
 
   constructor(
     private storage: LocalStorageService,
@@ -23,6 +25,7 @@ export class RecipeComponent implements OnInit {
   ngOnInit(): void {
     const slug = this.route.snapshot.paramMap.get('slug') || '';
     this.setRecipe(slug);
+    this.preview = this.recipe.strMealThumb!;
   }
 
   setRecipe(slug: string): void {
@@ -36,6 +39,7 @@ export class RecipeComponent implements OnInit {
       if (recipeId) {
         this.recipes.getRecipeById(recipeId).subscribe((recipes: any) => {
           this.recipe = recipes.meals[0];
+          this.preview = this.recipe.strMealThumb!;
         });
       } else {
         this.router.navigateByUrl('/404');
@@ -89,13 +93,50 @@ export class RecipeComponent implements OnInit {
       this.recipe[measureProperty] = undefined;
     }
 
-    const savedRecipes = this.storage.get('recipes');
-    const updatedRecipes = savedRecipes.map((recipe: Recipes) => {
+    const updatedRecipes = this.savedRecipes.map((recipe: Recipes) => {
       if (recipe.idMeal === this.recipe.idMeal) {
         return { ...this.recipe };
       }
       return recipe;
     });
     this.storage.set('recipes', updatedRecipes);
+  }
+
+  getPreview() {
+    return this.preview;
+  }
+
+  getImage(img: any) {
+    var canvas = document.createElement('canvas');
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    var ctx = canvas.getContext('2d')!;
+    ctx.drawImage(img, 0, 0);
+
+    var dataURL = canvas.toDataURL('image/png');
+
+    return dataURL.replace(/^data:image\/(png|jpg);base64,/, '');
+  }
+
+  updatePreview(e: any) {
+    const newPreview = e.target.files[0];
+
+    if (FileReader && newPreview) {
+      const fileReader = new FileReader();
+      fileReader.onload = (reader) => {
+        if (reader.target?.result) {
+          const updatedRecipes = this.savedRecipes.map((recipe: Recipes) => {
+            if (recipe.idMeal === this.recipe.idMeal) {
+              return { ...recipe, strMealThumb: reader.target?.result };
+            }
+            return recipe;
+          });
+          this.preview = reader.target?.result as string;
+          this.storage.set('recipes', updatedRecipes);
+        }
+      };
+      fileReader.readAsDataURL(newPreview);
+    }
   }
 }

@@ -34,6 +34,17 @@
       width: 100%;
       min-height: 10rem;
     }
+
+    &--file {
+      display: none;
+    }
+  }
+
+  &__label {
+    display: block;
+    cursor: pointer;
+    width: max-content;
+    margin: auto;
   }
 }
 
