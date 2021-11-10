@@ -26,6 +26,15 @@
   &__footer {
     margin: 2rem 0 0;
   }
+
+  &__field {
+    all: inherit;
+
+    &--textarea {
+      width: 100%;
+      min-height: 10rem;
+    }
+  }
 }
 
 .ingredients-list {

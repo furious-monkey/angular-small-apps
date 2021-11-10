@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { RecipesService } from 'src/app/shared/services/recipes.service';
@@ -10,9 +10,10 @@ import { slugify } from 'src/app/shared/utilities/slugify';
   styleUrls: ['./toolbar.component.scss'],
 })
 export class ToolbarComponent {
+  @Output() isEditionMode = new EventEmitter<boolean>();
+  isEditionEnabled: boolean = false;
   recipeId = history.state?.id;
   savedRecipes: object[] = this.storage.get('recipes');
-  isEditionEnabled: boolean = false;
   toggleLabel: string = 'Edition disabled';
 
   constructor(
@@ -59,5 +60,6 @@ export class ToolbarComponent {
     this.toggleLabel = this.isEditionEnabled
       ? 'Edition enabled'
       : 'Edition disabled';
+    this.isEditionMode.emit(this.isEditionEnabled);
   }
 }

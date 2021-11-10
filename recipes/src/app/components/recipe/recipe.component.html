@@ -1,7 +1,15 @@
 <article class="recipe">
   <header class="recipe__header">
-    <toolbar></toolbar>
-    <h2 class="recipe__title">{{ recipe.strMeal }}</h2>
+    <toolbar (isEditionMode)="isContentEditable($event)"></toolbar>
+    <h2 class="recipe__title">
+      <ng-container
+        *ngIf="isEditable; then editableTitle; else staticTitle"
+      ></ng-container>
+      <ng-template #editableTitle>
+        <input type="text" value="{{ recipe.strMeal }}" class="recipe__field" />
+      </ng-template>
+      <ng-template #staticTitle>{{ recipe.strMeal }}</ng-template>
+    </h2>
     <dl class="meta">
       <dt class="meta__term">Category:</dt>
       <dd class="meta__description">{{ recipe.strCategory }}</dd>
@@ -29,7 +37,17 @@
     </div>
     <div class="recipe__instructions">
       <h3>Instructions</h3>
-      {{ recipe.strInstructions }}
+      <ng-container
+        *ngIf="isEditable; then editableInstructions; else staticInstructions"
+      ></ng-container>
+      <ng-template #editableInstructions>
+        <textarea class="recipe__field recipe__field--textarea">{{
+          recipe.strInstructions
+        }}</textarea>
+      </ng-template>
+      <ng-template #staticInstructions>{{
+        recipe.strInstructions
+      }}</ng-template>
     </div>
   </div>
   <footer class="recipe__footer">
