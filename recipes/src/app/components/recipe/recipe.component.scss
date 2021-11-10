@@ -3,7 +3,7 @@
   border: 1px solid #d7d7d7;
   border-radius: 5px;
   box-shadow: 0 0 5px -3px #000000a5;
-  padding: clamp(2rem, 3vw, 3rem) clamp(1rem, 3vw, 2rem) clamp(2rem, 3vw, 4rem);
+  padding: clamp(4rem, 3vw, 5rem) clamp(1rem, 3vw, 2rem) clamp(2rem, 3vw, 4rem);
   position: relative;
 
   &__body {
@@ -15,7 +15,7 @@
   }
 
   &__thumb {
-    max-width: 300px;
+    max-width: min(100vw - 4rem, 300px);
   }
 
   &__instructions {
@@ -29,6 +29,7 @@
 
   &__field {
     all: inherit;
+    width: 100%;
 
     &--textarea {
       width: 100%;
