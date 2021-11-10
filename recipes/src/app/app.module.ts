@@ -13,6 +13,7 @@ import { SearchResultsComponent } from './components/search-results/search-resul
 import { SlugifyPipe } from './shared/pipes/slugify.pipe';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { TextareaDirective } from './shared/directives/textarea.directive';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     SlugifyPipe,
     PageNotFoundComponent,
     ToolbarComponent,
+    TextareaDirective,
   ],
   imports: [
     BrowserModule,

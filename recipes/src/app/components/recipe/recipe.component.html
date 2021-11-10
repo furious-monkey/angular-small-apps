@@ -41,9 +41,11 @@
         *ngIf="isEditable; then editableInstructions; else staticInstructions"
       ></ng-container>
       <ng-template #editableInstructions>
-        <textarea class="recipe__field recipe__field--textarea">{{
-          recipe.strInstructions
-        }}</textarea>
+        <textarea
+          textareaResize
+          class="recipe__field recipe__field--textarea"
+          >{{ recipe.strInstructions }}</textarea
+        >
       </ng-template>
       <ng-template #staticInstructions>{{
         recipe.strInstructions
