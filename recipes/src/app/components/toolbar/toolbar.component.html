@@ -1,4 +1,17 @@
 <div class="toolbar" toolbar>
+  <div class="toggle-edition">
+    <input
+      type="checkbox"
+      name="edition-mode"
+      id="edition-mode"
+      class="toggle-edition__checkbox"
+      [checked]="isEditionEnabled"
+      (click)="toggleEdition()"
+    />
+    <label for="edition-mode" class="toggle-edition__label">{{
+      toggleLabel
+    }}</label>
+  </div>
   <button *ngIf="shouldDisplaySave()" class="btn" (click)="saveRecipe()">
     Save
   </button>

@@ -1,35 +1,106 @@
 <article class="recipe">
   <header class="recipe__header">
-    <toolbar></toolbar>
-    <h2 class="recipe__title">{{ recipe.strMeal }}</h2>
+    <toolbar (isEditionMode)="isContentEditable($event)"></toolbar>
+    <h2 class="recipe__title">
+      <ng-container
+        *ngIf="isEditable; then editableTitle; else staticTitle"
+      ></ng-container>
+      <ng-template #editableTitle>
+        <input
+          type="text"
+          value="{{ recipe.strMeal }}"
+          name="strMeal"
+          (input)="updateRecipe($event)"
+          class="recipe__field"
+        />
+      </ng-template>
+      <ng-template #staticTitle>{{ recipe.strMeal }}</ng-template>
+    </h2>
     <dl class="meta">
       <dt class="meta__term">Category:</dt>
-      <dd class="meta__description">{{ recipe.strCategory }}</dd>
+      <dd class="meta__description">
+        <ng-container
+          *ngIf="isEditable; then editableCategory; else staticCategory"
+        ></ng-container>
+        <ng-template #staticCategory>
+          {{ recipe.strCategory }}
+        </ng-template>
+        <ng-template #editableCategory>
+          <input
+            type="text"
+            name="strCategory"
+            value="{{ recipe.strCategory }}"
+            (input)="updateRecipe($event)"
+            class="recipe__field"
+          />
+        </ng-template>
+      </dd>
     </dl>
   </header>
   <div class="recipe__body">
     <div class="recipe__preview">
       <h3>Preview</h3>
       <img
-        src="{{ recipe.strMealThumb }}"
+        [src]="getPreview()"
         alt="{{ recipe.strMeal }} preview"
         class="recipe__thumb"
       />
+      <ng-container *ngIf="isEditable">
+        <label class="recipe__label btn" for="recipe-thumb">
+          Upload a new image
+          <input
+            type="file"
+            name="recipe-thumb"
+            id="recipe-thumb"
+            accept="image/png, image/jpeg"
+            class="recipe__field recipe__field--file"
+            (change)="updatePreview($event)"
+          />
+        </label>
+      </ng-container>
     </div>
     <div class="recipe__ingredients">
       <h3>Ingredients</h3>
       <ul class="ingredients-list">
         <li
-          *ngFor="let ingredient of getIngredients()"
+          *ngFor="let ingredient of getIngredients(); index as i"
           class="ingredients-list__item"
         >
-          {{ ingredient }}
+          <ng-container
+            *ngIf="isEditable; then editableIngredients; else staticIngredients"
+          ></ng-container>
+          <ng-template #staticIngredients>
+            {{ ingredient }}
+          </ng-template>
+          <ng-template #editableIngredients>
+            <input
+              type="text"
+              name="strIngredient{{ i + 1 }}"
+              value="{{ ingredient }}"
+              (input)="updateRecipe($event)"
+              class="recipe__field"
+            />
+          </ng-template>
         </li>
       </ul>
     </div>
     <div class="recipe__instructions">
       <h3>Instructions</h3>
-      {{ recipe.strInstructions }}
+      <ng-container
+        *ngIf="isEditable; then editableInstructions; else staticInstructions"
+      ></ng-container>
+      <ng-template #editableInstructions>
+        <textarea
+          textareaResize
+          name="strInstructions"
+          (input)="updateRecipe($event)"
+          class="recipe__field recipe__field--textarea"
+          >{{ recipe.strInstructions }}</textarea
+        >
+      </ng-template>
+      <ng-template #staticInstructions>{{
+        recipe.strInstructions
+      }}</ng-template>
     </div>
   </div>
   <footer class="recipe__footer">
