@@ -5,10 +5,11 @@ import { SearchService } from 'src/app/shared/services/search.service';
 
 @Component({
   templateUrl: './search-results.component.html',
-  styleUrls: ['./search-results.component.scss']
+  styleUrls: ['./search-results.component.scss'],
 })
 export class SearchResultsComponent implements OnInit {
   recipes: Recipes[] = [];
+  query: string = '';
 
   constructor(private search: SearchService, private route: Router) {
     this.getRecipes();
@@ -17,12 +18,12 @@ export class SearchResultsComponent implements OnInit {
   ngOnInit(): void {
     if (this.recipes.length === 0) {
       const currentURL = this.route.url;
-      const query = currentURL.replace('/search/', '');
-      this.search.findResults(query);
+      this.query = currentURL.replace('/search/', '');
+      this.search.findResults(this.query);
     }
   }
 
   getRecipes(): void {
-    this.search.getResults().subscribe((recipes) => this.recipes = recipes);
+    this.search.getResults().subscribe((recipes) => (this.recipes = recipes));
   }
 }

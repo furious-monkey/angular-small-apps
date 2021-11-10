@@ -1,46 +1,61 @@
-<ul class="recipes-list">
-  <li *ngFor="let recipe of recipes" class="recipes-list__item">
-    <article class="card">
-      <header class="card__header">
-        <img
-          src="{{ recipe.strMealThumb }}"
-          alt="{{ recipe.strMeal }} picture"
-          class="card__thumb"
-        />
-        <h2 class="card__title">{{ recipe.strMeal }}</h2>
-      </header>
-      <div class="card__body">
-        {{
-          recipe.strInstructions.length > 120
-            ? (recipe.strInstructions | slice: 0:120) + "&hellip;"
-            : recipe.strInstructions
-        }}
-      </div>
-      <footer class="card__footer">
-        <dl class="meta">
-          <div class="meta__item">
-            <dt class="meta__term">Category:</dt>
-            <dd class="meta__description">{{ recipe.strCategory }}</dd>
-          </div>
-          <div class="meta__item" *ngIf="recipe.strTags">
-            <dt class="meta__term">Tags:</dt>
-            <dd class="meta__description">
-              {{ recipe.strTags | formatComma }}
-            </dd>
-          </div>
-        </dl>
-        <a
-          [routerLink]="['/recipe/', recipe.strMeal | slugify]"
-          [state]="{ id: recipe.idMeal }"
-          class="btn"
-        >
-          Read more
-          <span class="btn__icon"> &rightarrow;</span>
-        </a>
-      </footer>
-    </article>
-  </li>
-</ul>
-<a routerLink="" class="btn">
-  <span class="btn__icon">&leftarrow; </span>Back to recipes
-</a>
+<ng-container
+  *ngIf="recipes.length > 0; then recipesList; else notFound"
+></ng-container>
+<ng-template #recipesList>
+  <ul class="recipes-list">
+    <li *ngFor="let recipe of recipes" class="recipes-list__item">
+      <article class="card">
+        <header class="card__header">
+          <img
+            src="{{ recipe.strMealThumb }}"
+            alt="{{ recipe.strMeal }} picture"
+            class="card__thumb"
+          />
+          <h2 class="card__title">{{ recipe.strMeal }}</h2>
+        </header>
+        <div class="card__body">
+          {{
+            recipe.strInstructions.length > 120
+              ? (recipe.strInstructions | slice: 0:120) + "&hellip;"
+              : recipe.strInstructions
+          }}
+        </div>
+        <footer class="card__footer">
+          <dl class="meta">
+            <div class="meta__item">
+              <dt class="meta__term">Category:</dt>
+              <dd class="meta__description">{{ recipe.strCategory }}</dd>
+            </div>
+            <div class="meta__item" *ngIf="recipe.strTags">
+              <dt class="meta__term">Tags:</dt>
+              <dd class="meta__description">
+                {{ recipe.strTags | formatComma }}
+              </dd>
+            </div>
+          </dl>
+          <a
+            [routerLink]="['/recipe/', recipe.strMeal | slugify]"
+            [state]="{ id: recipe.idMeal }"
+            class="btn"
+          >
+            Read more
+            <span class="btn__icon"> &rightarrow;</span>
+          </a>
+        </footer>
+      </article>
+    </li>
+  </ul>
+  <a routerLink="" class="btn">
+    <span class="btn__icon">&leftarrow; </span>Back to recipes
+  </a>
+</ng-template>
+<ng-template #notFound>
+  <div class="not-found">
+    <div class="not-found__result">
+      No recipe match your query: {{ query }}.
+    </div>
+    <a routerLink="" class="btn">
+      <span class="btn__icon">&leftarrow; </span>Back to recipes
+    </a>
+  </div>
+</ng-template>
