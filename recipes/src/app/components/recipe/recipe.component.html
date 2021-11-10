@@ -6,7 +6,13 @@
         *ngIf="isEditable; then editableTitle; else staticTitle"
       ></ng-container>
       <ng-template #editableTitle>
-        <input type="text" value="{{ recipe.strMeal }}" class="recipe__field" />
+        <input
+          type="text"
+          value="{{ title }}"
+          name="recipe-title"
+          (input)="updateRecipe($event)"
+          class="recipe__field"
+        />
       </ng-template>
       <ng-template #staticTitle>{{ recipe.strMeal }}</ng-template>
     </h2>
@@ -43,6 +49,8 @@
       <ng-template #editableInstructions>
         <textarea
           textareaResize
+          name="recipe-instructions"
+          (input)="updateRecipe($event)"
           class="recipe__field recipe__field--textarea"
           >{{ recipe.strInstructions }}</textarea
         >

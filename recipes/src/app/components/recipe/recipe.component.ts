@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { ActivatedRoute, Event, Router } from '@angular/router';
 import { Recipes } from 'src/app/shared/recipes';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { RecipesService } from 'src/app/shared/services/recipes.service';
@@ -12,6 +12,14 @@ import { RecipesService } from 'src/app/shared/services/recipes.service';
 export class RecipeComponent implements OnInit {
   recipe: Partial<Recipes> = {};
   isEditable: boolean = false;
+  @Input()
+  get title(): string {
+    return this._title!;
+  }
+  set title(value: string) {
+    this._title = value && value.trim();
+  }
+  private _title = this.recipe.strMeal;
 
   constructor(
     private storage: LocalStorageService,
@@ -23,6 +31,7 @@ export class RecipeComponent implements OnInit {
   ngOnInit(): void {
     const slug = this.route.snapshot.paramMap.get('slug') || '';
     this.setRecipe(slug);
+    this.title = this.recipe.strMeal!;
   }
 
   setRecipe(slug: string): void {
@@ -62,5 +71,27 @@ export class RecipeComponent implements OnInit {
 
   isContentEditable(value: boolean): void {
     this.isEditable = value;
+  }
+
+  updateRecipe(e: any) {
+    let recipeProperty;
+
+    if (e.target.name === 'recipe-title') {
+      recipeProperty = 'strMeal' as keyof Recipes;
+    } else if (e.target.name === 'recipe-instructions') {
+      recipeProperty = 'strInstructions' as keyof Recipes;
+    }
+
+    if (recipeProperty) {
+      this.recipe[recipeProperty] = e.target.value;
+      const savedRecipes = this.storage.get('recipes');
+      const updatedRecipes = savedRecipes.map((recipe: Recipes) => {
+        if (recipe.idMeal === this.recipe.idMeal) {
+          return { ...this.recipe };
+        }
+        return recipe;
+      });
+      this.storage.set('recipes', updatedRecipes);
+    }
   }
 }
