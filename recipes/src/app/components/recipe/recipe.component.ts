@@ -49,11 +49,19 @@ export class RecipeComponent implements OnInit {
     const ingredients = [];
 
     for (let i = 1; i <= 20; i++) {
-      const currentMeasure = `strMeasure${i}` as keyof Recipes;
       const currentIngredient = `strIngredient${i}` as keyof Recipes;
-      const ingredient = this.recipe[currentIngredient]
-        ? `${this.recipe[currentMeasure]} ${this.recipe[currentIngredient]}`
-        : '';
+      let ingredient;
+
+      if (this.recipe[currentIngredient]) {
+        const currentMeasure = `strMeasure${i}` as keyof Recipes;
+
+        if (this.recipe[currentMeasure]) {
+          ingredient = `${this.recipe[currentMeasure]} ${this.recipe[currentIngredient]}`;
+        } else {
+          ingredient = `${this.recipe[currentIngredient]}`;
+        }
+      }
+
       if (ingredient) ingredients.push(ingredient);
     }
 
@@ -65,32 +73,29 @@ export class RecipeComponent implements OnInit {
   }
 
   updateRecipe(e: any) {
-    let recipeProperty;
+    console.log(e.target);
+    console.log(this.recipe);
+    const recipeProperty = e.target.name as keyof Recipes;
 
-    switch (e.target.name) {
-      case 'recipe-title':
-        recipeProperty = 'strMeal' as keyof Recipes;
-        break;
-      case 'recipe-instructions':
-        recipeProperty = 'strInstructions' as keyof Recipes;
-        break;
-      case 'recipe-category':
-        recipeProperty = 'strCategory' as keyof Recipes;
-        break;
-      default:
-        break;
+    if (!recipeProperty) {
+      return;
     }
 
-    if (recipeProperty) {
-      this.recipe[recipeProperty] = e.target.value;
-      const savedRecipes = this.storage.get('recipes');
-      const updatedRecipes = savedRecipes.map((recipe: Recipes) => {
-        if (recipe.idMeal === this.recipe.idMeal) {
-          return { ...this.recipe };
-        }
-        return recipe;
-      });
-      this.storage.set('recipes', updatedRecipes);
+    this.recipe[recipeProperty] = e.target.value;
+
+    if (recipeProperty.startsWith('strIngredient')) {
+      const ingredientNumber = recipeProperty.replace('strIngredient', '');
+      const measureProperty = `strMeasure${ingredientNumber}` as keyof Recipes;
+      this.recipe[measureProperty] = undefined;
     }
+
+    const savedRecipes = this.storage.get('recipes');
+    const updatedRecipes = savedRecipes.map((recipe: Recipes) => {
+      if (recipe.idMeal === this.recipe.idMeal) {
+        return { ...this.recipe };
+      }
+      return recipe;
+    });
+    this.storage.set('recipes', updatedRecipes);
   }
 }
