@@ -8,7 +8,7 @@ import { SearchResultsComponent } from './components/search-results/search-resul
 const routes: Routes = [
   { path: '', component: RecipesListComponent },
   { path: 'recipe/:slug', component: RecipeComponent },
-  { path: 'search/:query', component: SearchResultsComponent },
+  { path: 'search', component: SearchResultsComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
 

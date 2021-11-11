@@ -10,6 +10,7 @@ import { SearchService } from 'src/app/shared/services/search.service';
 })
 export class SearchComponent {
   searchForm = this.formBuilder.group({
+    by: 'name',
     query: '',
   });
 
@@ -20,8 +21,9 @@ export class SearchComponent {
   ) {}
 
   onSubmit(): void {
+    const by = this.searchForm.get('by')?.value;
     const query = this.searchForm.get('query')?.value;
-    this.search.findResults(query);
-    this.router.navigate([`search/${query}`]);
+    this.search.findResults(query, by);
+    this.router.navigate([`/search`, { by, query }]);
   }
 }

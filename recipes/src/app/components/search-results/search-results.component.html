@@ -1,5 +1,5 @@
 <ng-container
-  *ngIf="recipes.length > 0; then recipesList; else notFound"
+  *ngIf="recipes && recipes.length > 0; then recipesList; else notFound"
 ></ng-container>
 <ng-template #recipesList>
   <ul class="recipes-list">
@@ -13,7 +13,7 @@
           />
           <h2 class="card__title">{{ recipe.strMeal }}</h2>
         </header>
-        <div class="card__body">
+        <div *ngIf="recipe.strInstructions" class="card__body">
           {{
             recipe.strInstructions.length > 120
               ? (recipe.strInstructions | slice: 0:120) + "&hellip;"
@@ -22,7 +22,7 @@
         </div>
         <footer class="card__footer">
           <dl class="meta">
-            <div class="meta__item">
+            <div class="meta__item" *ngIf="recipe.strCategory">
               <dt class="meta__term">Category:</dt>
               <dd class="meta__description">{{ recipe.strCategory }}</dd>
             </div>
@@ -55,7 +55,7 @@
       No recipe match your query: {{ query }}.
     </div>
     <a routerLink="" class="btn">
-      <span class="btn__icon">&leftarrow; </span>Back to recipes
+      <span class="btn__icon">&leftarrow; </span>Back to your recipes
     </a>
   </div>
 </ng-template>

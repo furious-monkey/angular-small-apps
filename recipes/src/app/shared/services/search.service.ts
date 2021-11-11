@@ -15,9 +15,25 @@ export class SearchService {
     return this.results.asObservable();
   }
 
-  findResults(query: string) {
-    this.recipes
-      .getRecipeByName(query)
-      .subscribe((recipes: any) => this.results.next(recipes.meals));
+  findResults(query: string, by: string) {
+    switch (by) {
+      case 'name':
+        this.recipes
+          .getRecipeByName(query)
+          .subscribe((recipes: any) => this.results.next(recipes.meals));
+        break;
+      case 'ingredient':
+        this.recipes
+          .getRecipeByIngredient(query)
+          .subscribe((recipes: any) => this.results.next(recipes.meals));
+        break;
+      case 'category':
+        this.recipes
+          .getRecipeByCategory(query)
+          .subscribe((recipes: any) => this.results.next(recipes.meals));
+        break;
+      default:
+        break;
+    }
   }
 }

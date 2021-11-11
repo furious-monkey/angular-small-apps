@@ -2,6 +2,19 @@
   <fieldset class="form__fieldset">
     <legend class="form__legend">Search a new recipe</legend>
     <div class="form__item">
+      <label for="search-by" class="form__label">By</label>
+      <select
+        id="search-by"
+        name="search-by"
+        class="form__select"
+        formControlName="by"
+      >
+        <option value="name" selected>Name</option>
+        <option value="ingredient">Ingredient</option>
+        <option value="category">Category</option>
+      </select>
+    </div>
+    <div class="form__item">
       <label for="search-query" class="form__label">Query</label>
       <input
         type="search"

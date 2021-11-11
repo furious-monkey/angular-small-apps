@@ -13,6 +13,10 @@ export class RecipesService {
     'https://www.themealdb.com/api/json/v1/1/lookup.php?i=';
   private recipeByNameAPI =
     'https://www.themealdb.com/api/json/v1/1/search.php?s=';
+  private recipeByIngredientAPI =
+    'https://www.themealdb.com/api/json/v1/1/filter.php?i=';
+  private recipeByCategoryAPI =
+    'https://www.themealdb.com/api/json/v1/1/filter.php?c=';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -30,5 +34,13 @@ export class RecipesService {
 
   getRecipeByName(name: string): Observable<Recipes[]> {
     return this.http.get<Recipes[]>(this.recipeByNameAPI + name);
+  }
+
+  getRecipeByIngredient(ingredient: string): Observable<Recipes[]> {
+    return this.http.get<Recipes[]>(this.recipeByIngredientAPI + ingredient);
+  }
+
+  getRecipeByCategory(category: string): Observable<Recipes[]> {
+    return this.http.get<Recipes[]>(this.recipeByCategoryAPI + category);
   }
 }
