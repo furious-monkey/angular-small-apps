@@ -77,8 +77,6 @@ export class RecipeComponent implements OnInit {
   }
 
   updateRecipe(e: any) {
-    console.log(e.target);
-    console.log(this.recipe);
     const recipeProperty = e.target.name as keyof Recipes;
 
     if (!recipeProperty) {
