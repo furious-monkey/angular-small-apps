@@ -4,12 +4,12 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
 
 @Component({
   templateUrl: './recipes-list.component.html',
-  styleUrls: ['./recipes-list.component.scss']
+  styleUrls: ['./recipes-list.component.scss'],
 })
 export class RecipesListComponent implements OnInit {
   recipes: Recipes[] = [];
 
-  constructor(private storage: LocalStorageService) { }
+  constructor(private storage: LocalStorageService) {}
 
   ngOnInit(): void {
     this.getRecipes();

@@ -35,6 +35,6 @@ import { TextareaDirective } from './shared/directives/textarea.directive';
     ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

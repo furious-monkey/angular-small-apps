@@ -4,18 +4,20 @@ import { Recipes } from '../recipes';
 import { RecipesService } from './recipes.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SearchService {
   private results = new BehaviorSubject<Recipes[]>([]);
 
-  constructor(private recipes: RecipesService) { }
+  constructor(private recipes: RecipesService) {}
 
   getResults() {
     return this.results.asObservable();
   }
 
   findResults(query: string) {
-    this.recipes.getRecipeByName(query).subscribe((recipes: any) => this.results.next(recipes.meals))
+    this.recipes
+      .getRecipeByName(query)
+      .subscribe((recipes: any) => this.results.next(recipes.meals));
   }
 }

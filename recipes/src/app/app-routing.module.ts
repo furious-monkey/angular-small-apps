@@ -6,14 +6,14 @@ import { RecipesListComponent } from './components/recipes-list/recipes-list.com
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 
 const routes: Routes = [
-  { path: '', component: RecipesListComponent},
-  { path: 'recipe/:slug', component: RecipeComponent},
-  { path: 'search/:query', component: SearchResultsComponent},
-  { path: '**', component: PageNotFoundComponent}
+  { path: '', component: RecipesListComponent },
+  { path: 'recipe/:slug', component: RecipeComponent },
+  { path: 'search/:query', component: SearchResultsComponent },
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LocalStorageService {
-
-  constructor() { }
+  constructor() {}
 
   get(key: string): any {
     try {
@@ -15,7 +14,7 @@ export class LocalStorageService {
       } else {
         return undefined;
       }
-    } catch(e) {
+    } catch (e) {
       console.log(e);
       return undefined;
     }
@@ -25,7 +24,7 @@ export class LocalStorageService {
     try {
       const serialItem = JSON.stringify(value);
       localStorage.setItem(key, serialItem);
-    } catch(e) {
+    } catch (e) {
       console.log(e);
     }
   }

@@ -4,18 +4,21 @@ import { Observable } from 'rxjs';
 import { Recipes } from '../recipes';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RecipesService {
-  private allRecipesAPI = 'https://www.themealdb.com/api/json/v1/1/search.php?f=a';
-  private recipeByIdAPI = 'https://www.themealdb.com/api/json/v1/1/lookup.php?i=';
-  private recipeByNameAPI = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
+  private allRecipesAPI =
+    'https://www.themealdb.com/api/json/v1/1/search.php?f=a';
+  private recipeByIdAPI =
+    'https://www.themealdb.com/api/json/v1/1/lookup.php?i=';
+  private recipeByNameAPI =
+    'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getAllRecipes(): Observable<Recipes[]> {
     return this.http.get<Recipes[]>(this.allRecipesAPI);

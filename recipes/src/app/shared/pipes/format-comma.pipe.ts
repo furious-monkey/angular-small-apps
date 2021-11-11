@@ -7,14 +7,12 @@ import { Pipe, PipeTransform } from '@angular/core';
  * Example:
  *   {{ foo,bar,baz | formatComma }}
  *   formats to: foo, bar, baz
-*/
+ */
 @Pipe({
-  name: 'formatComma'
+  name: 'formatComma',
 })
 export class FormatCommaPipe implements PipeTransform {
-
   transform(text: string): string {
     return text.replace(/,/g, ', ');
   }
-
 }
