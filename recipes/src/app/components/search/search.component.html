@@ -1,11 +1,17 @@
 <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="form">
-  <label for="search-form" class="form__label">Search for a recipe:</label>
-  <input
-    type="search"
-    name="search-form"
-    id="search-form"
-    formControlName="query"
-    class="form__input"
-  />
-  <button class="btn" type="submit">Search</button>
+  <fieldset class="form__fieldset">
+    <legend class="form__legend">Search a new recipe</legend>
+    <div class="form__item">
+      <label for="search-query" class="form__label">Query</label>
+      <input
+        type="search"
+        name="search-query"
+        id="search-query"
+        formControlName="query"
+        class="form__input"
+        placeholder="Keywords..."
+      />
+    </div>
+    <button class="btn" type="submit">Search</button>
+  </fieldset>
 </form>
