@@ -1,5 +1,5 @@
 <ul class="recipes-list">
-  <li *ngFor="let recipe of recipes" class="recipes-list__item">
+  <li *ngFor="let recipe of recipes | async" class="recipes-list__item">
     <article class="card">
       <header class="card__header">
         <img
