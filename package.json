@@ -24,5 +24,10 @@
     "@commitlint/config-conventional": "^16.2.1",
     "husky": "^7.0.4",
     "standard-version": "^9.3.2"
+  },
+  "workspaces": {
+    "packages": [
+      "apps/**"
+    ]
   }
 }
