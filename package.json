@@ -1,7 +1,7 @@
 {
   "name": "angular-small-apps",
   "description": "A collection of small apps implemented with Angular.",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "license": "MIT",
   "author": {
     "name": "Armand Philippot",
